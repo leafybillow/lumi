@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="./schema/gdml.xsd">
+
+  <define>
+    <constant name="world_XY" value ="100"/>
+    <constant name="world_Z" value ="10"/>
+
+    <constant name="quartz_width" value="2.0"/>
+    <constant name="quartz_height" value="1.3"/>
+    <constant name="quartz_length" value="3.0"/>
+
+    <constant name="sam_can_wall_thickness" value="0.15"/>
+    <constant name="sam_can_outer_radius" value="1.92"/>
+    <constant name="sam_can_inner_radius" value="sam_can_outer_radius
+						-sam_can_wall_thickness"/>
+    
+    <constant name="sam_can_length" value="36.0"/>
+    <constant name="sam_can_length_cut" value="sam_can_length-2*sam_can_wall_thickness"/>
+
+    <constant name="sam_can_bot_face_sep" value="4.85"/>
+    <constant name="sam_mid_dist" value="sam_can_bot_face_sep+sam_can_length/2."/>
+
+    <constant name="quartz_bot_face_sep" value="5.5"/>
+    <constant name="quartz_mid_dist" value="quartz_bot_face_sep +quartz_length/2.0"/>
+
+    <position name="zero_posRel" unit="cm" x="0" y="0" z="0"/>
+    <position name="center_posRel" unit="cm" x="0" y="sam_mid_dist" z="0"/>
+    <position name="quartz_center_posRel" unit="cm" x="0" y="quartz_mid_dist" z="0"/>
+
+
+    <position name="pos_rel_sam_0130" unit="cm"  x="sam_mid_dist/sqrt(2)" y="0" z="-sam_mid_dist+sam_mid_dist/sqrt(2)"/>
+    <position name="pos_rel_sam_0300" unit="cm"  x="sam_mid_dist" y ="0" z="-sam_mid_dist" />
+    <position name="pos_rel_sam_0430" unit="cm"  x="sam_mid_dist/sqrt(2)" y="0" z="-sam_mid_dist-sam_mid_dist/sqrt(2)"/>
+    <position name="pos_rel_sam_0600" unit="cm"  x="0" y="0" z="-2*sam_mid_dist"/>
+    <position name="pos_rel_sam_0730" unit="cm"  x="-sam_mid_dist/sqrt(2)" y="0" z="-sam_mid_dist-sam_mid_dist/sqrt(2)"/>
+    <position name="pos_rel_sam_0900" unit="cm"  x="-sam_mid_dist" y="0" z="-sam_mid_dist"/>
+    <position name="pos_rel_sam_1030" unit="cm"  x="-sam_mid_dist/sqrt(2)" y="0" z="-sam_mid_dist+sam_mid_dist/sqrt(2)"/>
+
+    <position name="pos_rel_quartz_1200" unit="cm"  x="0" y="quartz_mid_dist" z="0"/>
+    <position name="pos_rel_quartz_0130" unit="cm"  x="quartz_mid_dist/sqrt(2)" y="quartz_mid_dist/sqrt(2)" z="0"/>
+    <position name="pos_rel_quartz_0300" unit="cm"  x="quartz_mid_dist" y="0" z="0" />
+    <position name="pos_rel_quartz_0430" unit="cm"  x="quartz_mid_dist/sqrt(2)" y="-quartz_mid_dist/sqrt(2)" z="0"/>
+    <position name="pos_rel_quartz_0600" unit="cm"  x="0" y="-quartz_mid_dist" z="0"/>
+    <position name="pos_rel_quartz_0730" unit="cm"  x="-quartz_mid_dist/sqrt(2)" y="-quartz_mid_dist/sqrt(2)" z="0"/>
+    <position name="pos_rel_quartz_0900" unit="cm"  x="-quartz_mid_dist" y="0" z="0"/>
+    <position name="pos_rel_quartz_1030" unit="cm"  x="-quartz_mid_dist/sqrt(2)" y="quartz_mid_dist/sqrt(2)" z="0"/>
+
+    <rotation name="y45" unit ="deg" x="0" y="45" z="0"/>
+    <rotation name="y90" unit ="deg" x="0" y="90" z="0"/>
+    <rotation name="y135" unit ="deg" x="0" y="135" z="0"/>
+    <rotation name="y180" unit ="deg" x="0" y="180" z="0"/>
+    <rotation name="y-135" unit ="deg" x="0" y="-135" z="0"/>
+    <rotation name="y-90" unit ="deg" x="0" y="-90" z="0"/>
+    <rotation name="y-45" unit ="deg" x="0" y="-45" z="0"/>
+
+    <rotation name="x90" unit="deg" x="90" y="0" z="0"/>
+    <rotation name="x90y45" unit="deg" x="90" y="45" z="0"/>
+    <rotation name="x90y90" unit="deg" x="90" y="90" z="0"/>
+    <rotation name="x90y135" unit="deg" x="90" y="135" z="0"/>
+  </define>
+
+  <materials>
+    <material Z="1" name="Vacuum" state="gas">
+      <T unit="K" value="2.73"/>
+      <P unit="pascal" value="3e-18"/>
+      <D unit="g/cm3" value="1e-25"/>
+      <atom unit="g/mole" value="1.01"/>
+    </material>
+
+    <material Z="13" name="Aluminum" state="solid">
+      <T unit="K" value="298"/>
+      <D unit="g/cm3" value="2.699"/>
+      <atom unit="g/mole" value="26.982" />
+    </material>
+    
+    <element name="Silicon" Z="14" formula="Si">
+      <atom unit="g/mole" value="28" />
+    </element>
+    <element name="Oxygen" Z="8" formula="O">
+      <atom unit="g/mole" value="16"/>
+    </element>
+    <material name="Quartz" formula="SiO2">
+      <T unit="K" value="298"/>
+      <D unit="g/cm3" value="2.203"/>
+      <composite n="2" ref="Oxygen" />
+      <composite n="1" ref="Silicon" />
+    </material>
+
+  </materials>
+
+  <solids>
+    <!-- World Box -->
+    <box lunit="cm" name="sam_world_solid"
+	 x="world_XY" y="world_XY" z="world_Z" />
+
+    <!-- SAM Quartz -->
+    <box lunit="cm" name="sam_quartz_box_solid"
+	 x="quartz_width"
+	 y="quartz_height"
+	 z="quartz_length"/>
+    <!-- SAM Can Union -->
+
+    <tube aunit="deg" startphi="0" deltaphi="360"
+	  lunit="cm" name="sam_cyl_solid"
+	  rmin="0" rmax="sam_can_outer_radius"
+	  z="sam_can_length"/>
+    <tube aunit="deg" startphi="0" deltaphi="360"
+	  lunit="cm" name="sam_cyl_cut_solid"
+	  rmin ="0" rmax="sam_can_inner_radius"
+	  z="sam_can_length_cut"/>
+
+    <subtraction name="sam_can_solid">
+      <first ref="sam_cyl_solid"/>
+      <second ref="sam_cyl_cut_solid"/>
+      <positionref ref="zero_posRel"/>
+    </subtraction>  
+
+    <union name="sam_can_solid_1">
+      <first ref="sam_can_solid"/>
+      <second ref="sam_can_solid"/>
+      <positionref ref="pos_rel_sam_0130"/>
+      <rotationref ref="y45"/>
+    </union>
+    <union name="sam_can_solid_2">
+      <first ref="sam_can_solid_1"/>
+      <second ref="sam_can_solid"/>
+      <positionref ref="pos_rel_sam_0300"/>
+      <rotationref ref="y90"/>
+    </union>
+    <union name="sam_can_solid_3">
+      <first ref="sam_can_solid_2"/>
+      <second ref="sam_can_solid"/>
+      <positionref ref="pos_rel_sam_0430"/>
+      <rotationref ref="y135"/>
+    </union>
+    <union name="sam_can_solid_4">
+      <first ref="sam_can_solid_3"/>
+      <second ref="sam_can_solid"/>
+      <positionref ref="pos_rel_sam_0600"/>
+      <rotationref ref="y180"/>
+    </union>
+    <union name="sam_can_solid_5">
+      <first ref="sam_can_solid_4"/>
+      <second ref="sam_can_solid"/>
+      <positionref ref="pos_rel_sam_0730"/>
+      <rotationref ref="y-135"/>
+    </union>
+    <union name="sam_can_solid_6">
+      <first ref="sam_can_solid_5"/>
+      <second ref="sam_can_solid"/>
+      <positionref ref="pos_rel_sam_0900"/>
+      <rotationref ref="y-90"/>
+    </union>
+    <union name="sam_can_solid_union">
+      <first ref="sam_can_solid_6"/>
+      <second ref="sam_can_solid"/>
+      <positionref ref="pos_rel_sam_1030"/>
+      <rotationref ref="y-45"/>
+    </union>
+
+  </solids>
+  
+  <structure>
+
+    <volume name="sam_can_logic">
+      <materialref ref="Aluminum"/>
+      <solidref ref="sam_can_solid_union"/>
+    </volume>
+    
+    <volume name="sam_quartz_logic">
+      <materialref ref="Quartz"/>
+      <solidref ref="sam_quartz_box_solid"/>
+      <auxiliary auxtype="SensDet" auxvalue="SAM"/>
+    </volume>
+
+    
+    <volume name="sam_world_logic">
+      <materialref ref="Vacuum"/>
+      <solidref ref="sam_world_solid"/>
+
+      <physvol name="sam_can_PV">
+	<volumeref ref="sam_can_logic"/>
+	<positionref ref="center_posRel"/>
+	<rotationref ref="x90"/>
+      </physvol>
+
+      <physvol name="quartz_PV1">
+	<volumeref ref="sam_quartz_logic"/>
+	<positionref ref="pos_rel_quartz_1200"/>
+	<rotationref ref="x90"/>
+      </physvol>
+
+      <physvol name="quartz_PV2">
+	<volumeref ref="sam_quartz_logic"/>
+	<positionref ref="pos_rel_quartz_0130"/>
+	<rotationref ref="x90y135"/>
+      </physvol>
+      <physvol name="quartz_PV3">
+	<volumeref ref="sam_quartz_logic"/>
+	<positionref ref="pos_rel_quartz_0300"/>
+	<rotationref ref="x90y90"/>
+      </physvol>
+      <physvol name="quartz_PV4">
+	<volumeref ref="sam_quartz_logic"/>
+	<positionref ref="pos_rel_quartz_0430"/>
+	<rotationref ref="x90y45"/>
+      </physvol>
+      <physvol name="quartz_PV5">
+	<volumeref ref="sam_quartz_logic"/>
+	<positionref ref="pos_rel_quartz_0600"/>
+	<rotationref ref="x90"/>
+      </physvol>
+      <physvol name="quartz_PV6">
+	<volumeref ref="sam_quartz_logic"/>
+	<positionref ref="pos_rel_quartz_0730"/>
+	<rotationref ref="x90y135"/>
+      </physvol>
+      <physvol name="quartz_PV7">
+	<volumeref ref="sam_quartz_logic"/>
+	<positionref ref="pos_rel_quartz_0900"/>
+	<rotationref ref="x90y90"/>
+      </physvol>
+      <physvol name="quartz_PV8">
+	<volumeref ref="sam_quartz_logic"/>
+	<positionref ref="pos_rel_quartz_1030"/>
+	<rotationref ref="x90y45"/>
+      </physvol>
+
+    </volume>
+  </structure>
+  
+  <setup name="SAMs" version="1.0">
+    <world ref="sam_world_logic"/>
+  </setup>
+
+</gdml>

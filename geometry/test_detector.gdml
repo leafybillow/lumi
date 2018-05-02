@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<gdml xmlns:gdml="http://cern.ch/2001/Schemas/GDML"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="./schema/gdml.xsd">
+
+  <define>
+    <constant name="detector_xy" value="100" />
+    <constant name="detector_z" value="10" />
+
+    <position unit="cm" name="sam_position"
+	      x="0.0" y="0.0" z="-400+237.535+0.1+567.765"/>
+	      
+  </define>
+
+  <materials>
+    <material Z="1" name="Vacuum" state="gas">
+      <T unit="K" value="2.73"/>
+      <P unit="pascal" value="3e-18"/>
+      <D unit="g/cm3" value="1e-25"/>
+      <atom unit="g/mole" value="1.01"/>
+    </material>
+    <material Z="13" name="Aluminum" state="solid">
+      <T unit="K" value="298"/>
+      <D unit="g/cm3" value="2.699"/>
+      <atom unit="g/mole" value="26.982" />
+    </material>
+  </materials>
+
+  <solids>
+    <box lunit="cm" name="detector_solid"
+	 x="detector_xy" y="detector_xy" z="detector_z" />
+  </solids>
+
+  <structure>
+    <volume name="detector_logic">
+      <materialref ref="Aluminum"/>
+      <solidref ref="detector_solid"/>
+      <auxiliary auxtype="SensDet" auxvalue="SAM"/>
+    </volume>
+    
+    <volume name="detector_world_logic">
+      <materialref ref="Vacuum"/>
+      <solidref ref="detector_solid"/>
+      
+      <physvol name="detector_PV">
+	<volumeref ref="detector_logic"/>
+	<position ref="sam_position"/>
+      </physvol>
+      
+    </volume>
+  </structure>
+  
+  <setup name="test_detector" version="1.0">
+    <world ref="detector_world_logic"/>
+  </setup>
+</gdml>
