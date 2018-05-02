@@ -498,6 +498,13 @@
     <position unit="cm" name="targ_center" x="0" y="0" z="center_targ"/>
     <position unit="cm" name="crex_targ_center" x="0" y="0" z="crex_target_center"/>
 
+    <!-- Dummy Target-->
+    <constant name="foil_thickness" value="0.1777"/>
+    <constant name="foil_seperation" value="15"/>
+    <position unit="cm" name="foil_relPos" x="0" y="0" z="foil_seperation"/>
+    <position unit="cm" name="dummy_pos" x="0" y="0" z="center_targ-foil_seperation/2"/>
+
+    
     <position unit="cm" name="sc_center" x="0" y="y_cent_sc" z="center_sc"/>
     <!-- <position unit="cm" name="new_sc_center" x="0" y="0" z="new_center_sc"/> -->
     <position unit="cm" name="scTrans_1" x="0" y="-(outer_r_sc-thick_sc/2)" z="-y_cent_sc"/>
@@ -961,6 +968,14 @@
     <!-- z="0.05" /> -->
     <!-- z="0.6" /> -->
 
+    <box lunit="cm" name="Al_dummy_foil" x="4" y="2" z="foil_thickness"/>
+
+    <union name="Al_dummy_solid" >
+      <first ref="Al_dummy_foil"/>
+      <second ref="Al_dummy_foil"/>
+      <positionref ref="foil_relPos"/>
+    </union>
+    
     <!-- Scattering Chamber -->
     <tube aunit="deg" startphi="0" deltaphi="360" lunit="cm" name="outScattChamber" rmin="0.0" rmax="outer_r_sc" z="height_sc" />
     <tube aunit="deg" startphi="0" deltaphi="360" lunit="cm" name="innScattChamber" rmin="0.0" rmax="inner_r_sc" z="1*height_sc-2*thick_sc" />
@@ -2463,12 +2478,18 @@
       <solidref ref="sc_attach_pigTopShield"/>
     </volume>
 
+    <!-- <volume name="target_logic"> -->
+    <!--   <!-\- <materialref ref="Calcium48"/> -\-> -->
+    <!--   <materialref ref="Aluminum"/> -->
+    <!--   <solidref ref="tubeTarget"/> -->
+    <!-- </volume> -->
+
     <volume name="target_logic">
-      <!-- <materialref ref="Calcium48"/> -->
       <materialref ref="Aluminum"/>
-      <solidref ref="tubeTarget"/>
+      <solidref ref="Al_dummy_solid"/>
     </volume>
 
+    
     <!-- New dual Scattering Chamber -->
     <volume name="new_sc_beampipe_logic">
       <materialref ref="Aluminum"/>
@@ -2703,9 +2724,14 @@
         <positionref ref="pos_global_coll_cw70"/>
       </physvol>
 
+      <!-- <physvol name="target"> -->
+      <!--   <volumeref ref="target_logic"/> -->
+      <!--   <positionref ref="targ_center"/> -->
+      <!-- </physvol> -->
+
       <physvol name="target">
         <volumeref ref="target_logic"/>
-        <positionref ref="targ_center"/>
+        <positionref ref="dummy_pos"/>
       </physvol>
 
       <physvol name="septum">

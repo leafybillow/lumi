@@ -1,0 +1,8 @@
+/home/yetao/workarea/g4_Simulation/lumi-MT/build/CMakeFiles/install/strip.dir
+/home/yetao/workarea/g4_Simulation/lumi-MT/build/CMakeFiles/install/local.dir
+/home/yetao/workarea/g4_Simulation/lumi-MT/build/CMakeFiles/lumi_exe.dir
+/home/yetao/workarea/g4_Simulation/lumi-MT/build/CMakeFiles/lumi.dir
+/home/yetao/workarea/g4_Simulation/lumi-MT/build/CMakeFiles/list_install_components.dir
+/home/yetao/workarea/g4_Simulation/lumi-MT/build/CMakeFiles/edit_cache.dir
+/home/yetao/workarea/g4_Simulation/lumi-MT/build/CMakeFiles/rebuild_cache.dir
+/home/yetao/workarea/g4_Simulation/lumi-MT/build/CMakeFiles/install.dir

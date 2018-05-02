@@ -52,7 +52,7 @@ G4VPhysicalVolume* lumiDetectorConstruction::Construct(){
   G4VisAttributes* SSVisAtt = new G4VisAttributes(G4Colour(0.0,0.0,1.0));
   SSVisAtt->SetVisibility(true);
   SSVisAtt->SetForceSolid(true);
-  G4VisAttributes* AlVisAtt = new G4VisAttributes(G4Colour(0.4,0.6,0.4,0.5));
+  G4VisAttributes* AlVisAtt = new G4VisAttributes(G4Colour(0.4,0.6,0.4));
   AlVisAtt->SetVisibility(true);
   AlVisAtt->SetForceWireframe(true);
   G4VisAttributes* QtzVisAtt = new G4VisAttributes(G4Colour(0.0,0.0,1.0));

@@ -36,6 +36,12 @@
 	      z="center_targ+237.535+0.1+sam_z_pos"/>
     
     <position name="zam_pos" unit="cm"  x="0" y="0" z="center_targ+237.535+0.1+sam_z_pos+10"/>
+
+    <constant name="foil_thickness" value="0.1777"/>
+    <constant name="foil_seperation" value="15"/>
+    <position unit="cm" name="foil_relPos" x="0" y="0" z="foil_seperation"/>
+    
+    <position unit="cm" name="dummy_position" x="0" y="0" z="-foil_seperation/2"/>
   </define>
 
   <materials>
@@ -66,12 +72,21 @@
 	  lunit="cm" name="target"
 	  rmin="0.0" rmax="target_radius"
 	  z = "target_length"/>
+
+    <box lunit="cm" name="Al_dummy_foil" x="4" y="2" z="foil_thickness"/>
+
+    <union name="Al_dummy_solid" >
+      <first ref="Al_dummy_foil"/>
+      <second ref="Al_dummy_foil"/>
+      <positionref ref="foil_relPos"/>
+    </union>
+
   </solids>
 
   <structure>
     <volume name="target_LV">
       <materialref ref="Aluminum"/>
-      <solidref ref="target"/>
+      <solidref ref="Al_dummy_solid"/>
     </volume>
 
     <volume name="world_LV">
@@ -80,7 +95,7 @@
 
       <physvol name="target_PV">
 	<volumeref ref="target_LV"/>
-	<positionref ref="target_position"/>
+	<positionref ref="dummy_position"/>
       </physvol>
 
       <physvol>
