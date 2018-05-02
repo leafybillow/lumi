@@ -192,7 +192,9 @@ void lumiDetectorConstruction::ConstructSDandField(){
   G4SDManager *sdManager = G4SDManager::GetSDMpointer();
   sdManager->SetVerboseLevel(1);
   LuminositySD* samDetector = new LuminositySD("SAM");
+  LuminositySD* beamDetector = new LuminositySD("bDet");
   sdManager->AddNewDetector(samDetector);
+  sdManager->AddNewDetector(beamDetector);
   //  G4cout << "Add SensitiveDetector" << G4endl;
   char detector_name[200];
   G4int i=0;
@@ -207,6 +209,9 @@ void lumiDetectorConstruction::ConstructSDandField(){
       if((*vit).type =="SensDet"){
 	if((*vit).value  == "SAM")
 	  mylogic->SetSensitiveDetector(samDetector);
+	if((*vit).value  == "bDet")
+	  mylogic->SetSensitiveDetector(beamDetector);
+
       }
     }
   }

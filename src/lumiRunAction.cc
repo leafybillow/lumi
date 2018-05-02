@@ -16,9 +16,6 @@ lumiRunAction::lumiRunAction(lumiEventAction* eventAction)
   analysisManager->SetVerboseLevel(1);
   analysisManager->SetFileName("lumi");
 
-  analysisManager->CreateH1("Hits","No of Hits of anEvent",10000,0,10000);
-  analysisManager->CreateH1("Edep","Edep in Luminosity",100,0,8.8*GeV);
-  
   G4cout << "Creating ROOT file" << G4endl;
   
   if (fEventAction){
@@ -34,7 +31,7 @@ lumiRunAction::lumiRunAction(lumiEventAction* eventAction)
     analysisManager->CreateNtupleDColumn("hit_y"); //6
     analysisManager->CreateNtupleDColumn("hit_z"); //7
 
-    analysisManager->CreateNtupleIColumn("detID"); // 8
+    analysisManager->CreateNtupleIColumn("samID"); // 8
 
     analysisManager->CreateNtupleDColumn("Ekin"); // 9
     analysisManager->CreateNtupleDColumn("Etot"); // 10
@@ -44,6 +41,23 @@ lumiRunAction::lumiRunAction(lumiEventAction* eventAction)
     analysisManager->CreateNtupleDColumn("vertex_x"); //12
     analysisManager->CreateNtupleDColumn("vertex_y"); //13
     analysisManager->CreateNtupleDColumn("vertex_z"); //14
+
+    analysisManager->CreateNtupleIColumn("procID"); // 15
+
+    //beamline detector
+    analysisManager->CreateNtupleDColumn("bhit_x"); // 16
+    analysisManager->CreateNtupleDColumn("bhit_y"); // 17
+    analysisManager->CreateNtupleDColumn("bhit_z"); // 18
+
+    analysisManager->CreateNtupleDColumn("bvertex_x"); // 19
+    analysisManager->CreateNtupleDColumn("bvertex_y"); // 20
+    analysisManager->CreateNtupleDColumn("bvertex_z"); // 21
+    
+    analysisManager->CreateNtupleDColumn("bdet_Ekin"); // 22
+    analysisManager->CreateNtupleDColumn("bdet_Etot"); // 23
+    
+    analysisManager->CreateNtupleIColumn("bdet_procID"); // 24
+    analysisManager->CreateNtupleIColumn("bdet_trackID"); // 25
     
     analysisManager->FinishNtuple();
   }

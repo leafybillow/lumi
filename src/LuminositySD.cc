@@ -58,9 +58,22 @@ G4bool LuminositySD::ProcessHits(G4Step *aStep, G4TouchableHistory *){
       G4ThreeVector vertex_pos = aTrack->GetVertexPosition();
       (*hitsCollection)[0]->SetVertexPos(vertex_pos);
       
-      // const G4VProcess *creatorProcess = aTrack->GetCreatorProcess();
-      // if(creatorProcess!=0)
-      // 	G4cout<< creatorProcess->GetProcessName() <<G4endl;
+      const G4VProcess *creatorProcess = aTrack->GetCreatorProcess();
+      if(creatorProcess!=0){
+	G4String processName = creatorProcess->GetCreatorProcess();
+	if(processName=="eIoni")
+	  (*hitsCollection)[0]->SetProcID(1);
+	if(processName=="compt")
+	  (*hitsCollection)[0]->SetProcID(2);
+	if(processName=="conv")
+	  (*hitsCollection)[0]->SetProcID(3);
+	if(processName=="photo")
+	  (*hitsCollection)[0]->SetProcID(4);
+	else
+	  (*hitsCollection)[0]->SetProcID(5);
+      }
+      else
+	(*hitsCollection)[0]->SetProcID(0); // Primary Source? 
     }
     if(detID ==(*hitsCollection)[0]->GetDetID()){
       G4double edep = aStep->GetTotalEnergyDeposit();

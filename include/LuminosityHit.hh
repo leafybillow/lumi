@@ -53,7 +53,10 @@ public:
 
   inline void SetTrackID(G4int i){ trackID=i;}
   inline G4int GetTrackID() const {return trackID;}
-  
+
+  inline void SetProcID(G4int i){ procID=i;}
+  inline G4int GetProcID() const {return procID;}
+
 private:
   G4double fEdep;
   G4bool fHitBefore;
@@ -66,6 +69,7 @@ private:
   G4double Ekin;
 
   G4int trackID;
+  G4int procID;
   
 };
 

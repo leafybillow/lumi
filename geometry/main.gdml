@@ -28,7 +28,7 @@
     <position unit="cm" name="dDet_beamilne_pos1"
 	      x="0.0"
 	      y="0.0"
-	      z="center_targ+237.535+0.1"/>
+	      z="10"/>
 
     <position unit="cm" name="sam_position"
 	      x="0.0"
@@ -67,6 +67,12 @@
 	 y="world_sizeXY"
 	 z="world_sizeZ"/>
 
+    <!-- beam detector -->
+    <box lunit="cm" name="beam_det_solid"
+	 x="world_sizeXY"
+	 y="world_sizeXY"
+	 z="0.5"/>
+
     <!-- Target -->
     <tube aunit="deg" startphi="0" deltaphi="360"
 	  lunit="cm" name="target"
@@ -88,10 +94,21 @@
       <materialref ref="Aluminum"/>
       <solidref ref="Al_dummy_solid"/>
     </volume>
-
+    
+    <volume name="beam_det_logic">
+      <materialref  ref="Vacuum"/>
+      <solidref ref="beam_det_solid"/>
+      <auxiliary auxtype="SensDet" auxvalue="bDet"/>
+    </volume>
+    
     <volume name="world_LV">
       <materialref ref="Vacuum"/>
       <solidref ref="world"/>
+
+      <physvol name="beam_det_PV0">
+	<volumeref ref="beam_det_logic"/>
+	<positionref ref="dDet_beamilne_pos1"/>
+      </physvol>
 
       <physvol name="target_PV">
 	<volumeref ref="target_LV"/>

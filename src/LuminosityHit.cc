@@ -22,6 +22,7 @@ LuminosityHit::LuminosityHit() :G4VHit(){
   Ekin = -1;
   Etot = -1;
   trackID = -1;
+  procID = -1;
   // fLogVol = nullptr;
 }
 // LuminosityHit::LuminosityHit(G4int i) :G4VHit(){
@@ -42,6 +43,7 @@ LuminosityHit::LuminosityHit(const LuminosityHit &right)  :G4VHit(){
   Etot = right.Etot;
   Ekin = right.Ekin;
   trackID = right.trackID;
+  procID = right.procID;
   //  fLogVol = right.fLogVol;
 }
 
@@ -56,6 +58,7 @@ const LuminosityHit& LuminosityHit::operator=(const LuminosityHit &right){
   Etot = right.Etot;
   Ekin = right.Ekin;
   trackID = right.trackID;
+  procID = right.procID;
   //  fLogVol = right.fLogVol;
   return *this;
 }
