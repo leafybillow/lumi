@@ -45,7 +45,8 @@ G4VPhysicalVolume* lumiDetectorConstruction::Construct(){
   world_PV->GetLogicalVolume()->SetVisAttributes(motherVisAtt);
 
   G4VisAttributes* VacVisAtt = new G4VisAttributes(G4Colour(1.0,1.0,1.0));
-  VacVisAtt->SetVisibility(false);
+  VacVisAtt->SetVisibility(true);
+  VacVisAtt->SetForceWireframe(true);
   G4VisAttributes* CuVisAtt = new G4VisAttributes(G4Colour(1.0,0.5,0.1));
   CuVisAtt->SetVisibility(true);
   CuVisAtt->SetForceSolid(true);

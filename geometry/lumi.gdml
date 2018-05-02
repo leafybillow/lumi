@@ -41,9 +41,9 @@
     <constant name="PI" value="1.*pi"/>
 
     <!-- World Volume -->
-    <constant name="width_mother" value="500.0"/>
-    <constant name="height_mother" value="500.0"/>
-    <constant name="length_mother" value="2000.0"/>
+    <constant name="width_mother" value="150.0"/>
+    <constant name="height_mother" value="150.0"/>
+    <constant name="length_mother" value="1500.0"/>
 
     <!-- reference everything to this -->
     <constant name="prex_target_center" value="-105.3"/>
@@ -504,6 +504,8 @@
     <position unit="cm" name="foil_relPos" x="0" y="0" z="foil_seperation"/>
     <position unit="cm" name="dummy_pos" x="0" y="0" z="center_targ-foil_seperation/2"/>
 
+    <position unit="cm" name="beam_det1_pos" x="0" y="0" z="center_targ+foil_seperation"/>
+    <position unit="cm" name="beam_det2_pos" x="0" y="0" z="center_cw70_coll+length_cw70_coll/2 +5"/>
     
     <position unit="cm" name="sc_center" x="0" y="y_cent_sc" z="center_sc"/>
     <!-- <position unit="cm" name="new_sc_center" x="0" y="0" z="new_center_sc"/> -->
@@ -1455,7 +1457,7 @@
           rmax="1.001*ro_septum_pipe"
           z="1.001*length_septum" />
     <box lunit="cm" name="sept_beam_hole_2" x="sept_pipe_cont_width" y="sept_pipe_cont_high" z="1.001*length_septum" />
-<!--
+
     <subtraction name ="septum_solid_1">
       <first ref="septum_solid_0"/>
       <second ref="sept_rect_hole"/>
@@ -1470,13 +1472,12 @@
       <first ref="septum_solid_2"/>
       <second ref="sept_beam_hole"/>
     </subtraction>
--->
-<!-- for lumi-->
 
-    <subtraction name ="septum_solid">
-      <first ref="septum_solid_0"/>
-      <second ref="sept_beam_hole"/>
-    </subtraction>
+    <!-- for lumi-->
+    <!-- <subtraction name ="septum_solid"> -->
+    <!--   <first ref="septum_solid_0"/> -->
+    <!--   <second ref="sept_beam_hole"/> -->
+    <!-- </subtraction> -->
 
     <!-- Acceptance solid - Ricky -->
     <box lunit="cm" name="accept_0" x="width_accept" y="height_accept" z="length_accept"/>
@@ -2280,6 +2281,9 @@
     <box lunit="cm" name="pDet_1" x="width_mother" y="height_mother" z="0.5"/>
     <box lunit="cm" name="pDet_2" x="width_mother" y="height_mother" z="0.5"/>
     <box lunit="cm" name="pDet_3" x="width_mother" y="height_mother" z="0.5"/>
+    
+    <!-- Detectors for lumi -->
+    <box lunit="cm" name="beam_det" x="width_mother" y="height_mother" z="0.5"/>
 
     <tube aunit="deg" startphi="0" deltaphi="360"
           lunit="cm" name="cDet_1_f"
@@ -2478,6 +2482,7 @@
       <solidref ref="sc_attach_pigTopShield"/>
     </volume>
 
+    
     <!-- <volume name="target_logic"> -->
     <!--   <!-\- <materialref ref="Calcium48"/> -\-> -->
     <!--   <materialref ref="Aluminum"/> -->
@@ -2687,6 +2692,18 @@
     </volume>
 
 
+    <volume name="beam_det1_logic">
+      <materialref ref="Vacuum"/>
+      <solidref ref="beam_det"/>
+      <auxiliary auxtype="SensDet" auxvalue="BeamDet1"/>
+    </volume>
+
+    <volume name="beam_det2_logic">
+      <materialref ref="Vacuum"/>
+      <solidref ref="beam_det"/>
+      <auxiliary auxtype="SensDet" auxvalue="BeamDet2"/>
+    </volume>
+
     <volume name="sDet_2_logic">
       <materialref ref="Vacuum"/>
       <solidref ref="sDet_2"/>
@@ -2742,6 +2759,25 @@
       <physvol name="septum_pipe">
         <volumeref ref="septum_pipe_logic" />
         <position name="posbeamline" unit="cm" x="0" y="0" z="center_septum_pipe"/>
+      </physvol>
+
+      <physvol name="vacEnc_l">
+        <volumeref ref="vac_enc_l_logic"/>
+        <positionref ref="vac_enc_center_l"/>
+      </physvol>
+      <physvol name="vacEnc_r">
+        <volumeref ref="vac_enc_r_logic"/>
+        <positionref ref="vac_enc_center_r"/>
+      </physvol>
+
+      <physvol name="beam_det1">
+	<volumeref ref="beam_det1_logic"/>
+	<positionref ref="beam_det1_pos"/>
+      </physvol>
+
+      <physvol name="beam_det2">
+	<volumeref ref="beam_det2_logic"/>
+	<positionref ref="beam_det2_pos"/>
       </physvol>
 
       <!--

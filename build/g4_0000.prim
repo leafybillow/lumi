@@ -1,0 +1,14 @@
+##G4.PRIM-FORMAT-2.4
+/BoundingBox        -7574.6287        -7574.6287        -7574.6287         7574.6287         7574.6287         7574.6287
+!SetCamera
+!OpenDevice
+!BeginModeling
+#--------------------
+#/PVName     logicMother_PV.0
+/ColorRGB                 1                 1                 1
+/ForceWireframe  1
+/Origin                 0                 0                 0
+/BaseVector                 1                 0                 0                 0                 1                 0
+/Box               750               750              7500
+#--------------------
+#/PVName          collimator.0
