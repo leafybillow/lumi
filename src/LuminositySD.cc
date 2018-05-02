@@ -60,7 +60,7 @@ G4bool LuminositySD::ProcessHits(G4Step *aStep, G4TouchableHistory *){
       
       const G4VProcess *creatorProcess = aTrack->GetCreatorProcess();
       if(creatorProcess!=0){
-	G4String processName = creatorProcess->GetCreatorProcess();
+	G4String processName = creatorProcess->GetProcessName();
 	if(processName=="eIoni")
 	  (*hitsCollection)[0]->SetProcID(1);
 	if(processName=="compt")
