@@ -1,4 +1,0 @@
-lumi_t0.root
-lumi_t1.root
-lumi_t2.root
-lumi_t3.root
