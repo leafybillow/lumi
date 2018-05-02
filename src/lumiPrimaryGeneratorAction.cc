@@ -26,22 +26,20 @@ lumiPrimaryGeneratorAction::~lumiPrimaryGeneratorAction(){
 }
 
 void lumiPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent){
-  G4double beam_Zposition = -150*cm;
+  G4double beam_z = -150*cm;
   
-  // G4double beam_Xposition = 5*(G4UniformRand()-0.5)*cm;
-  // G4double beam_Yposition = 5*(G4UniformRand()-0.5)*cm;
+  G4double beam_x = 0*cm;
+  G4double beam_y = 0*cm;
+  //2x2 mm raster
+  // G4double beam_x = 0.2*cm*(G4UniformRand()) - 0.1*cm;
+  // G4double beam_y = 0.2*cm*(G4UniformRand()) - 0.1*cm;
 
-  // G4double beam_Xposition = 0*cm;
-  // G4double beam_Yposition = 7.5*cm;
-  G4double beam_Xposition = 0*cm;
-  G4double beam_Yposition = 0*cm;
-
-  fParticleGun->SetParticlePosition(G4ThreeVector(beam_Xposition,beam_Yposition,beam_Zposition));
+  fParticleGun->SetParticlePosition(G4ThreeVector(beam_x,beam_y,beam_z));
   fParticleGun->GeneratePrimaryVertex(anEvent);
 
   G4AnalysisManager *analysisManager = G4AnalysisManager::Instance();
-  analysisManager->FillNtupleDColumn(2,beam_Xposition);
-  analysisManager->FillNtupleDColumn(3,beam_Yposition);
-  analysisManager->FillNtupleDColumn(4,beam_Zposition);
+  analysisManager->FillNtupleDColumn(2,beam_x);
+  analysisManager->FillNtupleDColumn(3,beam_y);
+  analysisManager->FillNtupleDColumn(4,beam_z);
 
 }

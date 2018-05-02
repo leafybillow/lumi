@@ -957,7 +957,8 @@
           lunit="cm" name="tubeTarget"
           rmin="inner_rad_targ"
           rmax="outer_rad_targ"
-          z="0.05" />
+          z="0.1777" />    <!-- Al Dummy 15cm -->
+    <!-- z="0.05" /> -->
     <!-- z="0.6" /> -->
 
     <!-- Scattering Chamber -->
