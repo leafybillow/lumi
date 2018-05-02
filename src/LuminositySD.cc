@@ -27,24 +27,21 @@ void LuminositySD::Initialize(G4HCofThisEvent *hce){
 
 
 G4bool LuminositySD::ProcessHits(G4Step *aStep, G4TouchableHistory *){
-
   const G4Track* aTrack = aStep->GetTrack();
   G4String particle_name =aTrack->GetDefinition()->GetParticleName();
+
+  G4StepPoint* preStepPoint = aStep->GetPreStepPoint();
+  G4TouchableHistory *theTouchable = (G4TouchableHistory*)(preStepPoint->GetTouchable());
+  G4VPhysicalVolume *myPV = theTouchable->GetVolume(0);
+  G4String pvName = myPV->GetName();
+  G4int name_length = strlen(pvName.data());
+  pvName.remove(0,name_length-1); 
+  G4int detID = atoi(pvName.data());
   G4bool fHitBefore = (*hitsCollection)[0]->GetHitBefore();
-  //  G4cout << "PartName:" << particle_name << G4endl;
   if (particle_name=="e-"){
-    
     if(!fHitBefore){ // if it is the first hit
       (*hitsCollection)[0]->SetHitBefore(true);
       (*hitsCollection)[0]->SetEdep(0.0); 
-      G4StepPoint* preStepPoint = aStep->GetPreStepPoint();
-      G4TouchableHistory *theTouchable = (G4TouchableHistory*)(preStepPoint->GetTouchable());
-      G4VPhysicalVolume *myPV = theTouchable->GetVolume(0);
-      
-      G4String pvName = myPV->GetName();
-      G4int name_length = strlen(pvName.data());
-      pvName.remove(0,name_length-1); 
-      G4int detID = atoi(pvName.data());
       (*hitsCollection)[0]->SetDetID(detID);
       
       G4ThreeVector hit_pos = preStepPoint->GetPosition();
@@ -65,13 +62,10 @@ G4bool LuminositySD::ProcessHits(G4Step *aStep, G4TouchableHistory *){
       // if(creatorProcess!=0)
       // 	G4cout<< creatorProcess->GetProcessName() <<G4endl;
     }
-    
-    // const G4VProcess* creatorProcess = aTrack->GetCreatorProcess();
-    // G4String processName;
-    // if(creatorProcess!=0) processName = creatorProcess->GetProcessName();
-    G4double edep = aStep->GetTotalEnergyDeposit();
-    (*hitsCollection)[0]->AddEdep(edep); // accumulate edep
-
+    if(detID ==(*hitsCollection)[0]->GetDetID()){
+      G4double edep = aStep->GetTotalEnergyDeposit();
+      (*hitsCollection)[0]->AddEdep(edep);// accumulate edep
+    }
   }
   return true;
 }

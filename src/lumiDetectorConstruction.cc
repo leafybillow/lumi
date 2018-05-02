@@ -48,17 +48,23 @@ G4VPhysicalVolume* lumiDetectorConstruction::Construct(){
   VacVisAtt->SetVisibility(false);
   G4VisAttributes* CuVisAtt = new G4VisAttributes(G4Colour(1.0,0.5,0.1));
   CuVisAtt->SetVisibility(true);
+  CuVisAtt->SetForceSolid(true);
   G4VisAttributes* SSVisAtt = new G4VisAttributes(G4Colour(0.0,0.0,1.0));
   SSVisAtt->SetVisibility(true);
+  SSVisAtt->SetForceSolid(true);
   G4VisAttributes* AlVisAtt = new G4VisAttributes(G4Colour(0.4,0.6,0.4,0.5));
   AlVisAtt->SetVisibility(true);
-  G4VisAttributes* QtzVisAtt = new G4VisAttributes(G4Colour(1.0,0.0,0.0));
+  AlVisAtt->SetForceWireframe(true);
+  G4VisAttributes* QtzVisAtt = new G4VisAttributes(G4Colour(0.0,0.0,1.0));
   QtzVisAtt->SetVisibility(true);
+  QtzVisAtt->SetForceSolid(true);
   G4VisAttributes* FeVisAtt = new G4VisAttributes(G4Colour(0.6,0.7,0.8));
   FeVisAtt->SetVisibility(true);
+  FeVisAtt->SetForceSolid(true);
   G4VisAttributes* CW70VisAtt= new G4VisAttributes(G4Colour(0.7,0.7,0.9));
   CW70VisAtt->SetVisibility(true);
-  
+  CW70VisAtt->SetForceSolid(true);
+
   G4VisAttributes* visAtt[7]={VacVisAtt,CuVisAtt,SSVisAtt,AlVisAtt,QtzVisAtt,FeVisAtt,CW70VisAtt};
   G4String mat_name[7]={"Vacuum","Copper","StainlessSteel","Aluminum","Quartz","Iron","matCW70"};
   G4int nMat =7;
