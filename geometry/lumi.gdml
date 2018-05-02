@@ -2464,7 +2464,7 @@
 
     <volume name="target_logic">
       <!-- <materialref ref="Calcium48"/> -->
-      <materialref ref="PureLead"/>
+      <materialref ref="Aluminum"/>
       <solidref ref="tubeTarget"/>
     </volume>
 
