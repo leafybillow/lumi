@@ -1,5 +1,5 @@
 void GetTChain(){
-  gSystem->Exec("ls -1 lumi_*.root > runlist.txt");
+  gSystem->Exec("ls -1 lumi_t*.root > runlist.txt");
   FILE* txtfile = fopen("runlist.txt","r");
   char filename[200];
 

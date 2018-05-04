@@ -78,8 +78,8 @@ void lumiEventAction::EndOfEventAction(const G4Event* anEvent){
   analysisManager->FillNtupleDColumn(20,bvertex_pos.getY()/cm);
   analysisManager->FillNtupleDColumn(21,bvertex_pos.getZ()/cm);
 
-  analysisManager->FillNtupleDColumn(22,Ekin/MeV);
-  analysisManager->FillNtupleDColumn(23,Etot/MeV);
+  analysisManager->FillNtupleDColumn(22,bEkin/MeV);
+  analysisManager->FillNtupleDColumn(23,bEtot/MeV);
 
   analysisManager->FillNtupleIColumn(24,bprocID);
   analysisManager->FillNtupleIColumn(25,btrackID);

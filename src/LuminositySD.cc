@@ -67,7 +67,7 @@ G4bool LuminositySD::ProcessHits(G4Step *aStep, G4TouchableHistory *){
 	  (*hitsCollection)[0]->SetProcID(2);
 	if(processName=="conv")
 	  (*hitsCollection)[0]->SetProcID(3);
-	if(processName=="photo")
+	if(processName=="phot")
 	  (*hitsCollection)[0]->SetProcID(4);
 	else
 	  (*hitsCollection)[0]->SetProcID(5);
