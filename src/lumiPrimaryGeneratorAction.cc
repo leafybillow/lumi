@@ -1,4 +1,5 @@
 #include "lumiPrimaryGeneratorAction.hh"
+#include "lumiPrimaryGeneratorMessenger.hh"
 
 #include "G4RunManager.hh"
 #include "G4Event.hh"
@@ -10,8 +11,10 @@
 #include "g4root.hh"
 
 lumiPrimaryGeneratorAction::lumiPrimaryGeneratorAction()
-  : G4VUserPrimaryGeneratorAction(),fParticleGun(NULL){
+  : G4VUserPrimaryGeneratorAction(),fParticleGun(NULL),runType(-1){
 
+  primaryMessenger = new lumiPrimaryGeneratorMessenger(this);
+  
   G4int noParticles = 1;
   fParticleGun = new G4ParticleGun(noParticles);
 
@@ -22,24 +25,52 @@ lumiPrimaryGeneratorAction::lumiPrimaryGeneratorAction()
 }
 
 lumiPrimaryGeneratorAction::~lumiPrimaryGeneratorAction(){
+  delete primaryMessenger;
   delete fParticleGun;
 }
-
 void lumiPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent){
+  switch(runType){
+  case 0 : 
+    GeneratePrimaries_origin(anEvent);
+    break;
+  case 1 :
+    GeneratePrimaries_raster(anEvent);
+    break;
+  }
+
+}
+
+void lumiPrimaryGeneratorAction::GeneratePrimaries_origin(G4Event* anEvent){
   G4double beam_z = -150*cm;
-  
   G4double beam_x = 0*cm;
   G4double beam_y = 0*cm;
   //2x2 mm raster
   // G4double beam_x = 0.2*cm*(G4UniformRand()) - 0.1*cm;
   // G4double beam_y = 0.2*cm*(G4UniformRand()) - 0.1*cm;
-
   fParticleGun->SetParticlePosition(G4ThreeVector(beam_x,beam_y,beam_z));
   fParticleGun->GeneratePrimaryVertex(anEvent);
-
   G4AnalysisManager *analysisManager = G4AnalysisManager::Instance();
   analysisManager->FillNtupleDColumn(2,beam_x);
   analysisManager->FillNtupleDColumn(3,beam_y);
   analysisManager->FillNtupleDColumn(4,beam_z);
+}
 
+
+void lumiPrimaryGeneratorAction::GeneratePrimaries_raster(G4Event* anEvent){
+  G4double beam_z = -150*cm;
+
+  //2.5x3 mm raster
+  G4double beam_x = 0.25*cm*(G4UniformRand()) - 0.125*cm;
+  G4double beam_y = 0.3*cm*(G4UniformRand()) - 0.15*cm;
+
+  fParticleGun->SetParticlePosition(G4ThreeVector(beam_x,beam_y,beam_z));
+  fParticleGun->GeneratePrimaryVertex(anEvent);
+  G4AnalysisManager *analysisManager = G4AnalysisManager::Instance();
+  analysisManager->FillNtupleDColumn(2,beam_x);
+  analysisManager->FillNtupleDColumn(3,beam_y);
+  analysisManager->FillNtupleDColumn(4,beam_z);
+}
+
+void lumiPrimaryGeneratorAction::SetBeamType(G4int type){
+  runType = type;
 }
