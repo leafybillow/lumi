@@ -4,16 +4,15 @@
 #include "G4LogicalVolume.hh"
 #include "G4ios.hh"
 
-class LuminosityHit: public G4VHit{
+class lumiDetectorHit: public G4VHit{
 public:
-  LuminosityHit();
-  // LuminosityHit(G4int i);
+  lumiDetectorHit();
   
-  LuminosityHit(const LuminosityHit &right);
-  virtual ~LuminosityHit();
+  lumiDetectorHit(const lumiDetectorHit &right);
+  virtual ~lumiDetectorHit();
 
-  const LuminosityHit& operator=(const LuminosityHit &right);
-  int operator==(const LuminosityHit &right) const;
+  const lumiDetectorHit& operator=(const lumiDetectorHit &right);
+  int operator==(const lumiDetectorHit &right) const;
 
   virtual void Draw();
   virtual const std::map<G4String,G4AttDef>* GetAttDefs() const;
@@ -73,20 +72,17 @@ private:
   
 };
 
-//using LuminosityHitsCollection = G4THitsCollection<LuminosityHit>;
-typedef G4THitsCollection<LuminosityHit> LuminosityHitsCollection;
-extern G4ThreadLocal G4Allocator<LuminosityHit>* LuminosityHitAllocator;
+typedef G4THitsCollection<lumiDetectorHit> lumiDetectorHitsCollection;
+extern G4ThreadLocal G4Allocator<lumiDetectorHit>* lumiDetectorHitAllocator;
 
-inline void* LuminosityHit::operator new(size_t){
-  // void *aHit;
-  // aHit = (void *) LuminosityHitAllocator->MallocSingle();
-  // return aHit;
-  if(!LuminosityHitAllocator){
-    LuminosityHitAllocator = new G4Allocator<LuminosityHit>;
+inline void* lumiDetectorHit::operator new(size_t){
+
+  if(!lumiDetectorHitAllocator){
+    lumiDetectorHitAllocator = new G4Allocator<lumiDetectorHit>;
   }
-  return (void*)LuminosityHitAllocator->MallocSingle();
+  return (void*)lumiDetectorHitAllocator->MallocSingle();
 }
 
-inline void LuminosityHit::operator delete(void *aHit){
-  LuminosityHitAllocator->FreeSingle((LuminosityHit*) aHit);
+inline void lumiDetectorHit::operator delete(void *aHit){
+  lumiDetectorHitAllocator->FreeSingle((lumiDetectorHit*) aHit);
 }

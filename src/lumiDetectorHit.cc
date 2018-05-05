@@ -1,4 +1,4 @@
-#include "LuminosityHit.hh"
+#include "lumiDetectorHit.hh"
 
 #include "G4VVisManager.hh"
 #include "G4Circle.hh"
@@ -10,9 +10,9 @@
 #include "G4VisAttributes.hh"
 #include "G4LogicalVolume.hh"
 
-G4ThreadLocal G4Allocator<LuminosityHit>* LuminosityHitAllocator;
+G4ThreadLocal G4Allocator<lumiDetectorHit>* lumiDetectorHitAllocator;
 
-LuminosityHit::LuminosityHit() :G4VHit(){
+lumiDetectorHit::lumiDetectorHit() :G4VHit(){
   fEdep = -1;
   fHitBefore = false; // for a new Hit, no hit before
   copyNo = -1;
@@ -25,14 +25,10 @@ LuminosityHit::LuminosityHit() :G4VHit(){
   procID = -1;
   // fLogVol = nullptr;
 }
-// LuminosityHit::LuminosityHit(G4int i) :G4VHit(){
-//   // layerID = i;
-//   fEdep  = 0;
-//   fLogVol = nullptr
-// }
-LuminosityHit::~LuminosityHit(){
+
+lumiDetectorHit::~lumiDetectorHit(){
 }
-LuminosityHit::LuminosityHit(const LuminosityHit &right)  :G4VHit(){
+lumiDetectorHit::lumiDetectorHit(const lumiDetectorHit &right)  :G4VHit(){
 
   fEdep = right.fEdep;
   fHitBefore = right.fHitBefore;
@@ -47,7 +43,7 @@ LuminosityHit::LuminosityHit(const LuminosityHit &right)  :G4VHit(){
   //  fLogVol = right.fLogVol;
 }
 
-const LuminosityHit& LuminosityHit::operator=(const LuminosityHit &right){
+const lumiDetectorHit& lumiDetectorHit::operator=(const lumiDetectorHit &right){
 
   fEdep = right.fEdep;
   fHitBefore = right.fHitBefore;
@@ -63,11 +59,11 @@ const LuminosityHit& LuminosityHit::operator=(const LuminosityHit &right){
   return *this;
 }
 
-int LuminosityHit::operator==(const LuminosityHit &right) const{
+int lumiDetectorHit::operator==(const lumiDetectorHit &right) const{
   return 0;
 }
 
-void LuminosityHit::Draw(){
+void lumiDetectorHit::Draw(){
   // G4VVisManager* visManager = G4VVisManager::GetConcreteInstance();
   // if(visManager){
   //   G4Circle circle(hit_pos);
@@ -81,10 +77,10 @@ void LuminosityHit::Draw(){
 }
   
 
-const  std::map<G4String, G4AttDef>* LuminosityHit::GetAttDefs() const{
+const  std::map<G4String, G4AttDef>* lumiDetectorHit::GetAttDefs() const{
   // G4bool isNew;
   // std::map<G4String,G4AttDef>* store
-  //   = G4AttDefStore::GetInstance("LuminosityHit",isNew);
+  //   = G4AttDefStore::GetInstance("lumiDetectorHit",isNew);
 
   // if(isNew){
   //   G4String HitType("HitType");
@@ -103,11 +99,11 @@ const  std::map<G4String, G4AttDef>* LuminosityHit::GetAttDefs() const{
   // return store;
 }
 
-std::vector<G4AttValue>* LuminosityHit::CreateAttValues() const{
+std::vector<G4AttValue>* lumiDetectorHit::CreateAttValues() const{
 
   // std::vector<G4AttValue>* attValue = new std::vector<G4AttValue>;
 
-  // attValue->push_back(G4AttValue("HitType","LuminosityHit",""));
+  // attValue->push_back(G4AttValue("HitType","lumiDetectorHit",""));
   // // attValue->push_back(G4AttValue("LayerID",G4UIcommand::ConvertToString(layerID),""));
   // // attValue->push_back(G4AttValue("Position",G4BestUnit(worldPos,"Length"),""));
   // // attValue->push_back(G4AttValue("ParticleName",particleName,""));
@@ -115,6 +111,6 @@ std::vector<G4AttValue>* LuminosityHit::CreateAttValues() const{
   // return attValue;
 
 }
-void LuminosityHit::Print(){
+void lumiDetectorHit::Print(){
 
 }

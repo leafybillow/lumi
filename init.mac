@@ -12,3 +12,4 @@
 # Initialize kernel
 /lumi/det/setGDML ../geometry/main.gdml
 /run/initialize
+/lumi/gun/beamtype 0

@@ -1,5 +1,5 @@
 #include "lumiEventAction.hh"
-#include "LuminosityHit.hh"
+#include "lumiDetectorHit.hh"
 
 #include "G4SystemOfUnits.hh"
 #include "G4HCofThisEvent.hh"
@@ -29,8 +29,8 @@ void lumiEventAction::BeginOfEventAction(const G4Event*){
 void lumiEventAction::EndOfEventAction(const G4Event* anEvent){
   
   G4HCofThisEvent *hce = anEvent->GetHCofThisEvent();
-  LuminosityHitsCollection* SAM_hitsCollection = (LuminosityHitsCollection*)(hce->GetHC(SAMCollID));
-  LuminosityHitsCollection* bDet_hitsCollection = (LuminosityHitsCollection*)(hce->GetHC(bDetCollID));
+  lumiDetectorHitsCollection* SAM_hitsCollection = (lumiDetectorHitsCollection*)(hce->GetHC(SAMCollID));
+  lumiDetectorHitsCollection* bDet_hitsCollection = (lumiDetectorHitsCollection*)(hce->GetHC(bDetCollID));
   
   G4AnalysisManager *analysisManager = G4AnalysisManager::Instance();
   

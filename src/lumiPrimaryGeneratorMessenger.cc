@@ -28,3 +28,4 @@ void lumiPrimaryGeneratorMessenger::SetNewValue(G4UIcommand* command, G4String n
   }
 
 }
+

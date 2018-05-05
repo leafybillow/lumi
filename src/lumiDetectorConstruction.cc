@@ -1,6 +1,6 @@
 #include "lumiDetectorConstruction.hh"
 #include "lumiDetectorMessenger.hh"
-#include "LuminositySD.hh"
+#include "lumiDetectorSD.hh"
 
 #include "G4RunManager.hh"
 #include "G4SDManager.hh"
@@ -191,8 +191,8 @@ void lumiDetectorConstruction::ConstructSDandField(){
   
   G4SDManager *sdManager = G4SDManager::GetSDMpointer();
   sdManager->SetVerboseLevel(1);
-  LuminositySD* samDetector = new LuminositySD("SAM");
-  LuminositySD* beamDetector = new LuminositySD("bDet");
+  lumiDetectorSD* samDetector = new lumiDetectorSD("SAM");
+  lumiDetectorSD* beamDetector = new lumiDetectorSD("bDet");
   sdManager->AddNewDetector(samDetector);
   sdManager->AddNewDetector(beamDetector);
   //  G4cout << "Add SensitiveDetector" << G4endl;

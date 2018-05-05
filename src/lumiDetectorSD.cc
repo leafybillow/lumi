@@ -1,32 +1,32 @@
-#include "LuminositySD.hh"
+#include "lumiDetectorSD.hh"
 #include "G4HCofThisEvent.hh"
 #include "G4TouchableHistory.hh"
 
 #include "G4SDManager.hh"
 #include "G4VProcess.hh"
 
-LuminositySD::LuminositySD(G4String SDName) :G4VSensitiveDetector(SDName){
+lumiDetectorSD::lumiDetectorSD(G4String SDName) :G4VSensitiveDetector(SDName){
   hitsCollection = NULL;
   HCID = -1;
   collectionName.insert("LumiHitColl");
 }
 
 
-LuminositySD::~LuminositySD(){
+lumiDetectorSD::~lumiDetectorSD(){
 }
 
-void LuminositySD::Initialize(G4HCofThisEvent *hce){
+void lumiDetectorSD::Initialize(G4HCofThisEvent *hce){
 
-  hitsCollection = new LuminosityHitsCollection(SensitiveDetectorName,collectionName[0]);
+  hitsCollection = new lumiDetectorHitsCollection(SensitiveDetectorName,collectionName[0]);
   if(HCID<0){
     HCID = G4SDManager::GetSDMpointer()->GetCollectionID(hitsCollection);
   }
   hce->AddHitsCollection(HCID,hitsCollection);
-  hitsCollection->insert(new LuminosityHit());
+  hitsCollection->insert(new lumiDetectorHit());
 }
 
 
-G4bool LuminositySD::ProcessHits(G4Step *aStep, G4TouchableHistory *){
+G4bool lumiDetectorSD::ProcessHits(G4Step *aStep, G4TouchableHistory *){
   const G4Track* aTrack = aStep->GetTrack();
   G4String particle_name =aTrack->GetDefinition()->GetParticleName();
 
