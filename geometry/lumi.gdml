@@ -504,7 +504,7 @@
     <position unit="cm" name="foil_relPos" x="0" y="0" z="foil_seperation"/>
     <position unit="cm" name="dummy_pos" x="0" y="0" z="center_targ-foil_seperation/2"/>
 
-    <position unit="cm" name="beam_det1_pos" x="0" y="0" z="center_targ+foil_seperation"/>
+    <position unit="cm" name="beam_det1_pos" x="0" y="0" z="center_targ+25.4/2 + 0.5/2 +4"/>
     <position unit="cm" name="beam_det2_pos" x="0" y="0" z="center_cw70_coll+length_cw70_coll/2 +5"/>
     
     <position unit="cm" name="sc_center" x="0" y="y_cent_sc" z="center_sc"/>

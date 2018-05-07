@@ -82,6 +82,8 @@
     <position name="pos_rel_qtz_0900" unit="cm" x="- sam_quartz_mid_dist" y="0" z="- sam_quartz_mid_dist"/>
     <position name="pos_rel_qtz_1030" unit="cm" x="- sam_quartz_mid_dist/sqrt(2)" y="0" z="- sam_quartz_mid_dist + sam_quartz_mid_dist/sqrt(2)"/>
 
+
+    
     <rotation name="x90" unit="deg" x="90" y="0" z="0"/>
     <rotation name="x90z45" unit="deg" z="45" y="0" x="90"/>
     <rotation name="x90z90" unit="deg" z="90" y="0" x="90"/>
@@ -197,7 +199,7 @@
           rmin="0"
           rmax="30."
           z="0.1"/>
-
+    
     <polycone aunit="deg" startphi="0" deltaphi="360" lunit="cm" name="beamPipe_solid1">
       <zplane rmin="4.102" rmax="4.1275" z="-1"/>
       <zplane rmin="4.102" rmax="4.1275" z="0"/>

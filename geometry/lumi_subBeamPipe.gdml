@@ -82,6 +82,7 @@
     <position name="pos_rel_qtz_0900" unit="cm" x="- sam_quartz_mid_dist" y="0" z="- sam_quartz_mid_dist"/>
     <position name="pos_rel_qtz_1030" unit="cm" x="- sam_quartz_mid_dist/sqrt(2)" y="0" z="- sam_quartz_mid_dist + sam_quartz_mid_dist/sqrt(2)"/>
 
+    <position name="pos_beam_det" unit="cm" x="0" y="0" z="sam_z_pos-0.5/2-sam_can_outer_r"/>
     <rotation name="x90" unit="deg" x="90" y="0" z="0"/>
     <rotation name="x90z45" unit="deg" z="45" y="0" x="90"/>
     <rotation name="x90z90" unit="deg" z="90" y="0" x="90"/>
@@ -211,6 +212,9 @@
           rmin="0"
           rmax="30."
           z="0.1"/>
+
+    <!-- beam det right before SAM cans -->
+    <tube aunit="deg" startphi="0" deltaphi="360" lunit="cm" name="beam_det_solid" rmin="0" rmax="30.162" z="0.5"/>
 
     <polycone aunit="deg" startphi="0" deltaphi="360" lunit="cm" name="beamPipe_solid1">
       <zplane rmin="4.102" rmax="4.1275" z="-1"/>
@@ -572,6 +576,12 @@
       <auxiliary auxtype="SensDet" auxvalue="SAM"/>
     </volume>
 
+    <volume name="beam_det_logic">
+      <materialref ref="Vacuum"/>
+      <solidref ref="beam_det_solid"/>
+      <auxiliary auxtype="SensDet" auxvalue="bDet"/>
+    </volume>
+
     <volume name="beamPipe_logic1">
       <materialref ref="Aluminum"/>
       <solidref ref="beamPipe_solid1"/>
@@ -597,6 +607,11 @@
         <positionref ref="center_posRel"/>
       </physvol>
 
+
+      <physvol name="beam_det_PV03">
+        <volumeref ref="beam_det_logic"/>
+        <positionref ref="pos_beam_det"/>
+      </physvol>
 
       <physvol name="sam_cans">
         <volumeref ref="sam_cans_logic"/>
