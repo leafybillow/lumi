@@ -15,14 +15,14 @@ G4ThreadLocal G4Allocator<lumiDetectorHit>* lumiDetectorHitAllocator;
 lumiDetectorHit::lumiDetectorHit() :G4VHit(){
   fEdep = -1;
   fHitBefore = false; // for a new Hit, no hit before
-  copyNo = -1;
   hit_pos = G4ThreeVector(0,0,0);
   vertex_pos = G4ThreeVector(0,0,0);
   detID = -1;
   Ekin = -1;
   Etot = -1;
   trackID = -1;
-  procID = -1;
+  creatorID = -1;
+  partID = -1;
   // fLogVol = nullptr;
 }
 
@@ -34,13 +34,12 @@ lumiDetectorHit::lumiDetectorHit(const lumiDetectorHit &right)  :G4VHit(){
   fHitBefore = right.fHitBefore;
   hit_pos = right.hit_pos;
   vertex_pos = right.vertex_pos;
-  copyNo = right.copyNo;
   detID = right.detID;
   Etot = right.Etot;
   Ekin = right.Ekin;
   trackID = right.trackID;
-  procID = right.procID;
-  //  fLogVol = right.fLogVol;
+  creatorID = right.creatorID;
+  partID = right.partID;
 }
 
 const lumiDetectorHit& lumiDetectorHit::operator=(const lumiDetectorHit &right){
@@ -49,13 +48,12 @@ const lumiDetectorHit& lumiDetectorHit::operator=(const lumiDetectorHit &right){
   fHitBefore = right.fHitBefore;
   hit_pos = right.hit_pos;
   vertex_pos = right.vertex_pos;
-  copyNo = right.copyNo;
   detID = right.detID;
   Etot = right.Etot;
   Ekin = right.Ekin;
   trackID = right.trackID;
-  procID = right.procID;
-  //  fLogVol = right.fLogVol;
+  creatorID = right.creatorID;
+  partID = right.partID;;
   return *this;
 }
 

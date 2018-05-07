@@ -44,7 +44,6 @@
     <constant name="width_mother" value="10000.0"/>
     <constant name="height_mother" value="10000.0"/>
     <constant name="length_mother" value="10000.0"/>
-
     <!-- reference everything to this -->
     <constant name="prex_target_center" value="-105.3"/>
     <!-- referenced from elog 2977 by Seamus where predicted relative shift is 46 cm -->

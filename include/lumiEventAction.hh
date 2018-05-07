@@ -13,9 +13,5 @@ public:
   virtual void EndOfEventAction(const G4Event*);
 
 private:
-
-  G4int SAMCollID;
-  G4int bDetCollID;
-
-
+  G4int CollID;
 };

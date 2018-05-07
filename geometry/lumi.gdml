@@ -2770,12 +2770,12 @@
         <positionref ref="vac_enc_center_r"/>
       </physvol>
 
-      <physvol name="beam_det1">
+      <physvol name="beam_det01">
 	<volumeref ref="beam_det1_logic"/>
 	<positionref ref="beam_det1_pos"/>
       </physvol>
 
-      <physvol name="beam_det2">
+      <physvol name="beam_det02">
 	<volumeref ref="beam_det2_logic"/>
 	<positionref ref="beam_det2_pos"/>
       </physvol>
@@ -2786,6 +2786,10 @@
         <position name="q1_hose_cyl_pos" unit="cm" x="0" y="0" z="210"/>
       </physvol>
       -->
+      <physvol>
+        <file name="../geometry/subTargetChamber.gdml"/>
+        <position name="target_chamber_center" unit="cm" x="0" y="0" z="prex_target_center"/>
+      </physvol>
 
       <physvol>
         <file name="../geometry/lumi_subBeamPipe.gdml"/>

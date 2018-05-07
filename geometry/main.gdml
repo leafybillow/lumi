@@ -105,7 +105,7 @@
       <materialref ref="Vacuum"/>
       <solidref ref="world"/>
 
-      <physvol name="beam_det_PV0">
+      <physvol name="beam_det_PV01">
 	<volumeref ref="beam_det_logic"/>
 	<positionref ref="dDet_beamilne_pos1"/>
       </physvol>

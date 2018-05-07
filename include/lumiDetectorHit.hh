@@ -37,12 +37,9 @@ public:
 
   inline void SetVertexPos(G4ThreeVector xyz) {vertex_pos =xyz;}
   inline G4ThreeVector GetVertexPos() const { return vertex_pos;}
-
-  inline void SetCopyNo(G4int i) { copyNo = i;}
-  inline G4int GetCopyNo() const {return copyNo;}
   
   inline void SetDetID(G4int i)  { detID = i;}
-  inline G4int GetDetID() const {return detID ;}
+  inline G4int GetDetID() const {return detID;}
 
   inline void SetEtot(G4double e){ Etot=e;}
   inline G4double GetEtot() const {return Etot;}
@@ -53,13 +50,16 @@ public:
   inline void SetTrackID(G4int i){ trackID=i;}
   inline G4int GetTrackID() const {return trackID;}
 
-  inline void SetProcID(G4int i){ procID=i;}
-  inline G4int GetProcID() const {return procID;}
+  inline void SetCreatorID(G4int i){ creatorID=i;}
+  inline G4int GetCreatorID() const {return creatorID;}
+  
+  inline void SetParticleID(G4int i){ partID=i;}
+  inline G4int GetParticleID() const {return partID;}
 
 private:
   G4double fEdep;
   G4bool fHitBefore;
-  G4int copyNo;
+  
   G4int detID;
   G4ThreeVector hit_pos;
   G4ThreeVector vertex_pos;
@@ -68,8 +68,8 @@ private:
   G4double Ekin;
 
   G4int trackID;
-  G4int procID;
-  
+  G4int creatorID;
+  G4int partID;
 };
 
 typedef G4THitsCollection<lumiDetectorHit> lumiDetectorHitsCollection;

@@ -187,43 +187,43 @@
 	<rotationref ref="x90"/>
       </physvol>
 
-      <physvol name="quartz_PV1">
+      <physvol name="quartz_PV11">
 	<volumeref ref="sam_quartz_logic"/>
 	<positionref ref="pos_rel_quartz_1200"/>
 	<rotationref ref="x90"/>
       </physvol>
 
-      <physvol name="quartz_PV2">
+      <physvol name="quartz_PV12">
 	<volumeref ref="sam_quartz_logic"/>
 	<positionref ref="pos_rel_quartz_0130"/>
 	<rotationref ref="x90y135"/>
       </physvol>
-      <physvol name="quartz_PV3">
+      <physvol name="quartz_PV13">
 	<volumeref ref="sam_quartz_logic"/>
 	<positionref ref="pos_rel_quartz_0300"/>
 	<rotationref ref="x90y90"/>
       </physvol>
-      <physvol name="quartz_PV4">
+      <physvol name="quartz_PV14">
 	<volumeref ref="sam_quartz_logic"/>
 	<positionref ref="pos_rel_quartz_0430"/>
 	<rotationref ref="x90y45"/>
       </physvol>
-      <physvol name="quartz_PV5">
+      <physvol name="quartz_PV15">
 	<volumeref ref="sam_quartz_logic"/>
 	<positionref ref="pos_rel_quartz_0600"/>
 	<rotationref ref="x90"/>
       </physvol>
-      <physvol name="quartz_PV6">
+      <physvol name="quartz_PV16">
 	<volumeref ref="sam_quartz_logic"/>
 	<positionref ref="pos_rel_quartz_0730"/>
 	<rotationref ref="x90y135"/>
       </physvol>
-      <physvol name="quartz_PV7">
+      <physvol name="quartz_PV17">
 	<volumeref ref="sam_quartz_logic"/>
 	<positionref ref="pos_rel_quartz_0900"/>
 	<rotationref ref="x90y90"/>
       </physvol>
-      <physvol name="quartz_PV8">
+      <physvol name="quartz_PV18">
 	<volumeref ref="sam_quartz_logic"/>
 	<positionref ref="pos_rel_quartz_1030"/>
 	<rotationref ref="x90y45"/>
