@@ -17,6 +17,7 @@ lumiDetectorHit::lumiDetectorHit() :G4VHit(){
   fHitBefore = false; // for a new Hit, no hit before
   hit_pos = G4ThreeVector(0,0,0);
   vertex_pos = G4ThreeVector(0,0,0);
+  momentum = G4ThreeVector(0,0,0);
   detID = -1;
   Ekin = -1;
   Etot = -1;
@@ -34,6 +35,8 @@ lumiDetectorHit::lumiDetectorHit(const lumiDetectorHit &right)  :G4VHit(){
   fHitBefore = right.fHitBefore;
   hit_pos = right.hit_pos;
   vertex_pos = right.vertex_pos;
+  momentum = right.momentum;
+  
   detID = right.detID;
   Etot = right.Etot;
   Ekin = right.Ekin;
@@ -46,8 +49,11 @@ const lumiDetectorHit& lumiDetectorHit::operator=(const lumiDetectorHit &right){
 
   fEdep = right.fEdep;
   fHitBefore = right.fHitBefore;
+  
   hit_pos = right.hit_pos;
   vertex_pos = right.vertex_pos;
+  momentum = right.momentum;
+  
   detID = right.detID;
   Etot = right.Etot;
   Ekin = right.Ekin;

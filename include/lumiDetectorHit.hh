@@ -37,7 +37,10 @@ public:
 
   inline void SetVertexPos(G4ThreeVector xyz) {vertex_pos =xyz;}
   inline G4ThreeVector GetVertexPos() const { return vertex_pos;}
-  
+
+  inline void SetMomentum(G4ThreeVector xyz) {momentum =xyz;}
+  inline G4ThreeVector GetMomentum() const { return momentum;}
+
   inline void SetDetID(G4int i)  { detID = i;}
   inline G4int GetDetID() const {return detID;}
 
@@ -63,6 +66,7 @@ private:
   G4int detID;
   G4ThreeVector hit_pos;
   G4ThreeVector vertex_pos;
+  G4ThreeVector momentum;
 
   G4double Etot;
   G4double Ekin;

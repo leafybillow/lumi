@@ -43,7 +43,11 @@ lumiRunAction::lumiRunAction(lumiEventAction* eventAction)
     analysisManager->CreateNtupleIColumn("trackID"); // 14
     analysisManager->CreateNtupleIColumn("creatorID"); // 15
     analysisManager->CreateNtupleIColumn("particleID"); // 16
-    
+
+    analysisManager->CreateNtupleDColumn("px"); // 17
+    analysisManager->CreateNtupleDColumn("py"); // 18
+    analysisManager->CreateNtupleDColumn("pz"); // 18
+
     analysisManager->FinishNtuple();
   }
 }

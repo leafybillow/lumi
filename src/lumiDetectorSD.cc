@@ -57,6 +57,7 @@ G4bool lumiDetectorSD::ProcessHits(G4Step *aStep, G4TouchableHistory *){
     G4ThreeVector hit_pos = preStepPoint->GetPosition();
     this_hit->SetHitPos(hit_pos);
 
+
     G4double Etot = aTrack->GetTotalEnergy();
     this_hit->SetEtot(Etot);
     G4double Ekin = aTrack->GetKineticEnergy();
@@ -67,7 +68,10 @@ G4bool lumiDetectorSD::ProcessHits(G4Step *aStep, G4TouchableHistory *){
 
     G4ThreeVector vertex_pos = aTrack->GetVertexPosition();
     this_hit->SetVertexPos(vertex_pos);
-      
+
+    G4ThreeVector momentum = aTrack->GetMomentum();
+    this_hit->SetMomentum(momentum);
+    
     const G4VProcess *creatorProcess = aTrack->GetCreatorProcess();
     if(creatorProcess!=0){
       G4String processName = creatorProcess->GetProcessName();

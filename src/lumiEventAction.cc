@@ -44,6 +44,10 @@ void lumiEventAction::EndOfEventAction(const G4Event* anEvent){
 
     G4ThreeVector hit_pos = (*hitsCollection)[ihit]->GetHitPos();
     G4ThreeVector vertex_pos = (*hitsCollection)[ihit]->GetVertexPos();
+    G4ThreeVector momentum = (*hitsCollection)[ihit]->GetMomentum();
+    G4double px =momentum.getX();
+    G4double py =momentum.getY();
+    G4double pz =momentum.getZ();
     
     G4int trackID =(*hitsCollection)[ihit]->GetTrackID();
     G4int creatorID =(*hitsCollection)[ihit]->GetCreatorID();
@@ -72,6 +76,11 @@ void lumiEventAction::EndOfEventAction(const G4Event* anEvent){
     analysisManager->FillNtupleIColumn(14,trackID);
     analysisManager->FillNtupleIColumn(15,creatorID);
     analysisManager->FillNtupleIColumn(16,particleID);
+
+    analysisManager->FillNtupleDColumn(17,px);
+    analysisManager->FillNtupleDColumn(18,py);
+    analysisManager->FillNtupleDColumn(19,pz);
+
 
     analysisManager->AddNtupleRow();
   }
