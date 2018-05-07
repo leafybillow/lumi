@@ -83,6 +83,8 @@ void Plot(){
   h_hit_e->SetTitle("Counts at SAMs");
   h_hit_e->GetXaxis()->SetTitle("SAM ID");
   h_hit_e->GetYaxis()->SetTitle("Counts");
+  h_hit_e->GetYaxis()->SetTitleOffset(1.5);
+
   h_hit_e->Draw();
   gPad->Update(); // Update to Make sure stat box is created
   TPaveStats *ps_e =(TPaveStats*)(h_hit_e->FindObject("stats"));
