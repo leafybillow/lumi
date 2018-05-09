@@ -10,6 +10,6 @@
 /run/numberOfThreads 4
 #
 # Initialize kernel
-/lumi/det/setGDML ../geometry/main.gdml
+/lumi/det/setGDML ../geometry/lumi.gdml
 /run/initialize
-/lumi/gun/beamtype 0
+/lumi/gun/beamtype 1

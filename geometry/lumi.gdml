@@ -2731,15 +2731,15 @@
       <materialref ref="Vacuum"/>
       <solidref ref="boxMother"/>
 
-      <physvol name="collimator">
-        <volumeref ref="W_coll_logic"/>
-        <positionref ref="pos_global_coll_cw70"/>
-      </physvol>
+      <!-- <physvol name="collimator"> -->
+      <!--   <volumeref ref="W_coll_logic"/> -->
+      <!--   <positionref ref="pos_global_coll_cw70"/> -->
+      <!-- </physvol> -->
 
-      <physvol name="Cu_tube">
-        <volumeref ref="Cu_tube_logic"/>
-        <positionref ref="pos_global_coll_cw70"/>
-      </physvol>
+      <!-- <physvol name="Cu_tube"> -->
+      <!--   <volumeref ref="Cu_tube_logic"/> -->
+      <!--   <positionref ref="pos_global_coll_cw70"/> -->
+      <!-- </physvol> -->
 
       <!-- <physvol name="target"> -->
       <!--   <volumeref ref="target_logic"/> -->
