@@ -11,7 +11,7 @@
 #include "g4root.hh"
 
 lumiPrimaryGeneratorAction::lumiPrimaryGeneratorAction()
-  : G4VUserPrimaryGeneratorAction(),fParticleGun(NULL),runType(-1){
+  : G4VUserPrimaryGeneratorAction(),fParticleGun(NULL),runType(-1),energy(0){
 
   primaryMessenger = new lumiPrimaryGeneratorMessenger(this);
   
@@ -21,7 +21,7 @@ lumiPrimaryGeneratorAction::lumiPrimaryGeneratorAction()
   G4ParticleDefinition* particleDefinition = G4ParticleTable::GetParticleTable()->FindParticle("e-");
   fParticleGun->SetParticleDefinition(particleDefinition);
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.0));
-  fParticleGun->SetParticleEnergy(8.8*GeV);
+  fParticleGun->SetParticleEnergy(1.0*GeV);
 }
 
 lumiPrimaryGeneratorAction::~lumiPrimaryGeneratorAction(){
@@ -36,6 +36,10 @@ void lumiPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent){
   case 1 :
     GeneratePrimaries_raster(anEvent);
     break;
+  case 2 :
+    GeneratePrimaries_remollAl(anEvent);
+    break;
+    
   }
 
 }
@@ -62,6 +66,22 @@ void lumiPrimaryGeneratorAction::GeneratePrimaries_raster(G4Event* anEvent){
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }
 
+void lumiPrimaryGeneratorAction::GeneratePrimaries_remollAl(G4Event* anEvent){
+  G4double beam_z = -150*cm;
+
+  //2.5x3 mm raster
+  G4double beam_x = 0.25*cm*(G4UniformRand()) - 0.125*cm;
+  G4double beam_y = 0.3*cm*(G4UniformRand()) - 0.15*cm;
+
+  //  remollGenAl *genAl = new remollGenAl(0); // 0: Elastic
+  
+
+}
+
 void lumiPrimaryGeneratorAction::SetBeamType(G4int type){
   runType = type;
 }
+
+// void lumiPrimaryGeneratorAction::SetBeamEnergy(G4double e){
+//   energy = e;
+// }

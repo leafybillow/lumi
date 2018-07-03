@@ -23,11 +23,12 @@ void Plot(){
   h_hit_pos->SetLineWidth(2);
   h_hit_gamma->SetLineWidth(2);
 
-  TH1D* h_ekin_e = new TH1D("h_ekin_e","h_ekin_e",1000,0,10000);
-  TH1D* h_ekin_pos = new TH1D("h_ekin_pos","h_ekin_pos",1000,0,10000);
-  TH1D* h_ekin_gamma = new TH1D("h_ekin_gamma","h_ekin_gamma",1000,0,10000);
-  TH1D* h_ekin_prim = new TH1D("h_ekin_prim","h_ekin_prim",1000,0,10000);
-  TH1D* h_ekin_sec = new TH1D("h_ekin_sec","h_ekin_sec",1000,0,10000);
+  int beam_energy= 1100; // unit MeV
+  TH1D* h_ekin_e = new TH1D("h_ekin_e","h_ekin_e",1000,0,beam_energy);
+  TH1D* h_ekin_pos = new TH1D("h_ekin_pos","h_ekin_pos",1000,0,beam_energy);
+  TH1D* h_ekin_gamma = new TH1D("h_ekin_gamma","h_ekin_gamma",1000,0,beam_energy);
+  TH1D* h_ekin_prim = new TH1D("h_ekin_prim","h_ekin_prim",1000,0,beam_energy);
+  TH1D* h_ekin_sec = new TH1D("h_ekin_sec","h_ekin_sec",1000,0,beam_energy);
   h_ekin_e->SetLineColor(1);
   h_ekin_pos->SetLineColor(2);
   h_ekin_gamma->SetLineColor(4);

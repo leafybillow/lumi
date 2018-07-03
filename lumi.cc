@@ -2,7 +2,11 @@
 #include "lumiActionInitialization.hh"
 
 #include "FTFP_BERT.hh"
+#include "FTFP_BERT_HP.hh"
+#include "QGSP_BERT_HP.hh"
 #include "QBBC.hh"
+#include "FTF_BIC.hh"
+
 #include "G4StepLimiterPhysics.hh"
 #include "G4UImanager.hh"
 #include "Randomize.hh"
@@ -43,8 +47,11 @@ int main(int argc, char** argv){
   lumiDetectorConstruction *detectorConstruction = new lumiDetectorConstruction;
   runManager->SetUserInitialization(detectorConstruction);
   
-  G4VModularPhysicsList *physicsList = new FTFP_BERT;
-  //  physicsList->RegisterPhysics(new G4StepLimiterPhysics());
+  G4VModularPhysicsList *physicsList = new FTFP_BERT_HP;
+  //  G4VModularPhysicsList *physicsList = new QGSP_BERT_HP;
+  // G4VModularPhysicsList *physicsList = new QBBC;
+  //  G4VModularPhysicsList *physicsList = new FTF_BIC;
+  physicsList->RegisterPhysics(new G4StepLimiterPhysics());
   physicsList->SetVerboseLevel(1);
   runManager->SetUserInitialization(physicsList);
   

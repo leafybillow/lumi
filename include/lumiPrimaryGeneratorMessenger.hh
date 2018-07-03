@@ -4,6 +4,7 @@
 class lumiPrimaryGeneratorAction;
 class G4UIdirectory;
 class G4UIcmdWithAnInteger;
+class G4UIcmdWithADoubleAndUnit;
 
 class lumiPrimaryGeneratorMessenger: public G4UImessenger{
 
@@ -16,5 +17,6 @@ public:
 private:
   lumiPrimaryGeneratorAction* primaryGenAction;
   G4UIdirectory* gunDir;
-  G4UIcmdWithAnInteger* setGunCmd;
+  G4UIcmdWithAnInteger* setGunType;
+  // G4UIcmdWithADoubleAndUnit* setGunEnergy;
 };

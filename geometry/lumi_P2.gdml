@@ -388,6 +388,7 @@
     <constant name="radius_of_cylwall" value="2652."/>
     <constant name="thick_cylwall" value="148.7"/>
     <constant name="radius_topwall_out" value="5472.78"/>
+
     <constant name="radius_topwall_in" value="5402.78"/>
     <constant name="center_topwall" value="-3435.26"/>
     <constant name="bottom_cylwall" value="-447."/>
@@ -506,8 +507,8 @@
     <!-- Update on June 4th, Cip: Gmp puts target at pivot -->
     <position unit="cm" name="dummy_pos" x="0" y="0" z="-foil_seperation/2"/> 
     
-    <position unit="cm" name="beam_det1_pos" x="0" y="0" z="25.4/2 + 0.5/2 +4"/>
-    <position unit="cm" name="beam_det2_pos" x="0" y="0" z="length_cw70_coll/2 +5"/>
+    <position unit="cm" name="beam_det1_pos" x="0" y="0" z="center_targ+25.4/2 + 0.5/2 +4"/>
+    <position unit="cm" name="beam_det2_pos" x="0" y="0" z="center_cw70_coll+length_cw70_coll/2 +5"/>
     
     <position unit="cm" name="sc_center" x="0" y="y_cent_sc" z="center_sc"/>
     <!-- <position unit="cm" name="new_sc_center" x="0" y="0" z="new_center_sc"/> -->
@@ -968,9 +969,7 @@
           lunit="cm" name="tubeTarget"
           rmin="inner_rad_targ"
           rmax="outer_rad_targ"
-          z="0.1777" />    <!-- Al Dummy 15cm -->
-    <!-- z="0.05" /> -->
-    <!-- z="0.6" /> -->
+    z="0.05" />
 
     <box lunit="cm" name="Al_dummy_foil" x="4" y="2" z="foil_thickness"/>
 
@@ -2485,15 +2484,9 @@
     </volume>
 
     
-    <!-- <volume name="target_logic"> -->
-    <!--   <!-\- <materialref ref="Calcium48"/> -\-> -->
-    <!--   <materialref ref="Aluminum"/> -->
-    <!--   <solidref ref="tubeTarget"/> -->
-    <!-- </volume> -->
-
     <volume name="target_logic">
-      <materialref ref="Aluminum"/>
-      <solidref ref="Al_dummy_solid"/>
+      <materialref ref="PureLead"/>
+      <solidref ref="tubeTarget"/>
     </volume>
 
     
@@ -2733,54 +2726,54 @@
       <materialref ref="Vacuum"/>
       <solidref ref="boxMother"/>
 
-      <!-- <physvol name="collimator"> -->
-      <!--   <volumeref ref="W_coll_logic"/> -->
-      <!--   <positionref ref="pos_global_coll_cw70"/> -->
-      <!-- </physvol> -->
+      <physvol name="collimator">
+        <volumeref ref="W_coll_logic"/>
+        <positionref ref="pos_global_coll_cw70"/>
+      </physvol>
 
-      <!-- <physvol name="Cu_tube"> -->
-      <!--   <volumeref ref="Cu_tube_logic"/> -->
-      <!--   <positionref ref="pos_global_coll_cw70"/> -->
-      <!-- </physvol> -->
+      <physvol name="Cu_tube">
+        <volumeref ref="Cu_tube_logic"/>
+        <positionref ref="pos_global_coll_cw70"/>
+      </physvol>
 
-      <!-- <physvol name="target"> -->
-      <!--   <volumeref ref="target_logic"/> -->
-      <!--   <positionref ref="targ_center"/> -->
-      <!-- </physvol> -->
+      <physvol name="collimator_jacket">
+        <volumeref ref="coll_jacket_W_logic"/>
+        <positionref ref="pos_global_coll_jacket"/>
+      </physvol>
 
       <physvol name="target">
         <volumeref ref="target_logic"/>
-        <positionref ref="dummy_pos"/>
+        <positionref ref="targ_center"/>
       </physvol>
 
-      <!-- <physvol name="septum"> -->
-      <!--   <volumeref ref="septum_logic"/> -->
-      <!--   <positionref ref="septum_center"/> -->
-      <!-- </physvol> -->
+      <physvol name="septum">
+        <volumeref ref="septum_logic"/>
+        <positionref ref="septum_center"/>
+      </physvol>
 
-      <!-- <physvol name="septum_pipe"> -->
-      <!--   <volumeref ref="septum_pipe_logic" /> -->
-      <!--   <position name="posbeamline" unit="cm" x="0" y="0" z="center_septum_pipe"/> -->
-      <!-- </physvol> -->
+      <physvol name="septum_pipe">
+        <volumeref ref="septum_pipe_logic" />
+        <position name="posbeamline" unit="cm" x="0" y="0" z="center_septum_pipe"/>
+      </physvol>
 
-      <!-- <physvol name="vacEnc_l"> -->
-      <!--   <volumeref ref="vac_enc_l_logic"/> -->
-      <!--   <positionref ref="vac_enc_center_l"/> -->
-      <!-- </physvol> -->
-      <!-- <physvol name="vacEnc_r"> -->
-      <!--   <volumeref ref="vac_enc_r_logic"/> -->
-      <!--   <positionref ref="vac_enc_center_r"/> -->
-      <!-- </physvol> -->
+      <physvol name="vacEnc_l">
+        <volumeref ref="vac_enc_l_logic"/>
+        <positionref ref="vac_enc_center_l"/>
+      </physvol>
+      <physvol name="vacEnc_r">
+        <volumeref ref="vac_enc_r_logic"/>
+        <positionref ref="vac_enc_center_r"/>
+      </physvol>
 
       <physvol name="beam_det01">
 	<volumeref ref="beam_det1_logic"/>
 	<positionref ref="beam_det1_pos"/>
       </physvol>
 
-      <!-- <physvol name="beam_det02"> -->
-      <!-- 	<volumeref ref="beam_det2_logic"/> -->
-      <!-- 	<positionref ref="beam_det2_pos"/> -->
-      <!-- </physvol> -->
+      <physvol name="beam_det02">
+      	<volumeref ref="beam_det2_logic"/>
+      	<positionref ref="beam_det2_pos"/>
+      </physvol>
 
       <!--
       <physvol>
@@ -2788,10 +2781,10 @@
         <position name="q1_hose_cyl_pos" unit="cm" x="0" y="0" z="210"/>
       </physvol>
       -->
-      <!-- <physvol> -->
-      <!--   <file name="../geometry/subTargetChamber.gdml"/> -->
-      <!--   <position name="target_chamber_center" unit="cm" x="0" y="0" z="prex_target_center"/> -->
-      <!-- </physvol> -->
+      <physvol>
+        <file name="../geometry/subTargetChamber.gdml"/>
+        <position name="target_chamber_center" unit="cm" x="0" y="0" z="prex_target_center"/>
+      </physvol>
 
       <physvol>
         <file name="../geometry/lumi_subBeamPipe.gdml"/>
